@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>rabbitmq中的消息发布与消费</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/favicon.ico">[object Object]
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.1e8eb450.css" as="style"><link rel="preload" href="/assets/js/app.9389cf45.js" as="script"><link rel="preload" href="/assets/js/3.79ddd9d5.js" as="script"><link rel="preload" href="/assets/js/1.e5d25758.js" as="script"><link rel="preload" href="/assets/js/13.7c0fffb2.js" as="script"><link rel="prefetch" href="/assets/js/10.bb469e76.js"><link rel="prefetch" href="/assets/js/11.c3c4ab90.js"><link rel="prefetch" href="/assets/js/12.9ae17b90.js"><link rel="prefetch" href="/assets/js/14.a35bf75e.js"><link rel="prefetch" href="/assets/js/15.66015e13.js"><link rel="prefetch" href="/assets/js/16.7baf4690.js"><link rel="prefetch" href="/assets/js/17.c72e9454.js"><link rel="prefetch" href="/assets/js/18.ef40442e.js"><link rel="prefetch" href="/assets/js/19.ef953bb0.js"><link rel="prefetch" href="/assets/js/20.ae7efc07.js"><link rel="prefetch" href="/assets/js/21.8697b0ef.js"><link rel="prefetch" href="/assets/js/22.3d1cbe24.js"><link rel="prefetch" href="/assets/js/23.8521f01b.js"><link rel="prefetch" href="/assets/js/4.14c04f5e.js"><link rel="prefetch" href="/assets/js/5.51c19715.js"><link rel="prefetch" href="/assets/js/6.dc45652f.js"><link rel="prefetch" href="/assets/js/7.abfebb51.js"><link rel="prefetch" href="/assets/js/8.febb03a4.js"><link rel="prefetch" href="/assets/js/9.a7ef52fa.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.1e8eb450.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-130b300a><div data-v-130b300a><div class="password-shadow password-wrapper-out" style="display:none;" data-v-25ba6db2 data-v-130b300a data-v-130b300a><h3 class="title" data-v-25ba6db2 data-v-25ba6db2></h3> <p class="description" data-v-25ba6db2 data-v-25ba6db2></p> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><!---->
+            
+          <span data-v-25ba6db2>2022 - NOW - </span>
+          2022
+        </a></span></div></div> <div class="hide" data-v-130b300a><header class="navbar" data-v-130b300a><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="" class="logo"> <!----></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/theory/" class="nav-link"><i class="undefined"></i>
+  theory
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java/" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/categories/随笔/" class="nav-link"><i class="undefined"></i>
+  随笔
+</a></li><li class="dropdown-item"><!----> <a href="/categories/git/" class="nav-link"><i class="undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/categories/leetcode/" class="nav-link"><i class="undefined"></i>
+  leetcode
+</a></li><li class="dropdown-item"><!----> <a href="/categories/技巧/" class="nav-link"><i class="undefined"></i>
+  技巧
+</a></li><li class="dropdown-item"><!----> <a href="/categories/中间件/" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogs/中间件/数据库/使用redis实现分布式锁.html" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/PdeKingsley" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-130b300a></div> <aside class="sidebar" data-v-130b300a><div class="personal-info-wrapper" data-v-39576ba9 data-v-130b300a><img src="/Pixel_Me.png" alt="author-avatar" class="personal-img" data-v-39576ba9> <!----> <div class="num" data-v-39576ba9><div data-v-39576ba9><h3 data-v-39576ba9>11</h3> <h6 data-v-39576ba9>Articles</h6></div> <div data-v-39576ba9><h3 data-v-39576ba9>14</h3> <h6 data-v-39576ba9>Tags</h6></div></div> <ul class="social-links" data-v-39576ba9></ul> <hr data-v-39576ba9></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/theory/" class="nav-link"><i class="undefined"></i>
+  theory
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java/" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/categories/随笔/" class="nav-link"><i class="undefined"></i>
+  随笔
+</a></li><li class="dropdown-item"><!----> <a href="/categories/git/" class="nav-link"><i class="undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/categories/leetcode/" class="nav-link"><i class="undefined"></i>
+  leetcode
+</a></li><li class="dropdown-item"><!----> <a href="/categories/技巧/" class="nav-link"><i class="undefined"></i>
+  技巧
+</a></li><li class="dropdown-item"><!----> <a href="/categories/中间件/" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogs/中间件/数据库/使用redis实现分布式锁.html" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/PdeKingsley" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-25ba6db2 data-v-130b300a><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>rabbitmq中的消息发布与消费</h3> <!----> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><!---->
+            
+          <span data-v-25ba6db2>2022 - NOW - </span>
+          2022
+        </a></span></div></div> <div data-v-130b300a><main class="page" style="padding-right:0;"><section><div class="page-title"><h1 class="title">rabbitmq中的消息发布与消费</h1> <div data-v-f875f3fc><!----> <i class="iconfont reco-date" data-v-f875f3fc><span data-v-f875f3fc>5/2/2022</span></i> <!----> <i class="tags iconfont reco-tag" data-v-f875f3fc><span class="tag-item" data-v-f875f3fc>rabbitmq</span></i></div></div> <div class="theme-reco-content content__default"><blockquote><p>多一分则肥，少一分则瘦</p></blockquote> <p>消息中间件消息的发布需要在高性能与可靠性之间做权衡，rabbitmq依靠AMQP的事务规范，可选的持久化机制，以及自身的传输确认机制为我们构建不同等级的可靠系统提供了可能性。</p><div align="center"><img src="/assets/img/performance-with-guarantee.030c6e54.png"></div><p></p> <p>Notification on failure -- 当我们在Basic.Publish的method frame中添加mandatory标志时，如果消息没有被正确的路由，那么rabbitmq broker就会通过Basic.Return的RPC回传消息给publisher。在我们的代码中要注册回调函数处理这种路由失败的情况。Publisher confirms -- publisher发送Confirm.Select,rabbitmq broker回复Confirm.SelectOk，之后这条传递消息的channel就成了一个confirm channel，publisher每发送一条消息给服务器，如果消息都入队等待被消费并且被持久化到磁盘中，或者是消息在所有应该路由到的队列中都被消费者消费完毕了，服务端就会回复Basic.Ack，否则就会回复Basic.Nak。服务端异步回复confirm消息，在我们的代码中需要注册回调函数处理来自服务端的回复。Alternate exchanges -- 当我们声明一个exchange，可以给它绑定一个备用exchange，当发送给给此exchange的消息无法被路由时，此备选exchange就会接管工作，将消息路由到死信队列中去，值得注意的是，一旦同时设置mandatory标志和备选队列，那么mandatory就失效了。Transactions -- AMQP规范中定义了事务来保证批处理的原子性。publisher发送TX.Select,服务端回传TX.SelectOk，事务就开始了，可以在事务中发送一条或者多条消息，消息发送完毕publisher发送TX.Commit，然后在收到服务端的TX.CommitOk后，事务就完成了。这里需要注意的是当事务执行过程中，发生错误了，那么服务端就会发送Basic.Return,publisher如果想终止事务，可以发送TX.Rollback，然后等待服务端回传TX.RollbackOk。另外，rabbitmq在实现AMQP事务规范时只有当命令只影响一条队列时，才保证其原子性，当有多条队列收到影响时，原子性就会被打破。事务机制比较影响性能。HA queues -- HA queue需要在集群环境中使用，在定义队列时，将队列声明为高可用队列，模式若设为all，则集群中的所有结点都会同步此队列的状态。若模式为nodes，则可自定义同步节点。一旦消费者在任意节点消费了此队列中的消息，所有节点中的该条消息就会立刻被删除。HA queues拥有一个主节点，其他的都是副节点，如果主节点挂了，其他的某个副节点就会成为新的主节点。如果挂了的节点恢复了，或者集群中加入了新的节点，那么它们会接受新发送来的消息，并且在队列中的旧消息都消费完毕了才会加入同步集。HA queues with transactions -- 这种方式会引入相当的响应延迟，慎重使用。Persisted messages -- 持久化选项由Basic.Properties中的delivery-mode控制，默认为1，表示不持久化，如果想要持久化，则应该设为2，另外装此消息的队列也应该被设置为持久化队列。</p> <p>上面一段讲了向rabbitmq发布消息的问题，这一段我们看看怎么从rabbitmq获取消息。有两种方法可以从rabbitmq获取消息，<code>Basic.Get</code> &amp; <code>Basic.Consume</code>。Basic.Get使用一种拉的模式从broker中获取消息，consumer想要获取一个消息都必须发送一个新的Basic.Get RPC请求，broker会根据queue中是否有代办消息回复<code>Basic.GetOk</code> or <code>Basic.GetEmpty</code>，消费端需要根据回复进行相应的处理。Basic.Get的这种同步方式对性能有明显的影响，更重要的是，由于consume是消费端主动发起的，所以broker也无法优化整个传输过程。与<code>Basic.Get</code>相反的是，<code>Basic.Consume</code>以一种推的方式从broker中获取消息，发送Basic.Consume RPC请求到broker后，rabbitmq就会在broker中注册你的应用，然后直到你发送<code>Basic.Cancel</code>之前,broker都以一种异步的方式将队列中的消息发送给消费者。当然从broker获取到消息之后，消费端也需要向broker发送<code>Basic.Ack</code>让它知道消息已经被正常消费了。同publish一样，消费消息也需要在吞吐量和可靠性之间做权衡。</p><div align="center"><img src="/assets/img/consume-with-guarantee.b960678f.png"></div><p></p> <p>no-ack -- 当向rabbitmq发送Basic.Consume注册我们的应用进行消费时，在请求中携带no-ack的标志时，broker就会知道消费端不会ack，应该尽可能快速地将消息发送给消费端。Consuming with acknowledgement and Qos &gt; 1 -- 通过向broker发送Basic.Qos请求，我们可以设置一条channel的服务质量，broker会在这条channel上连续发送预设数量的message后，等待消费端的回复，消费端可以选择依旧每条消息都回复，也可以通过在Basic.Ack中设置multiple标志而不必每条消息都回复，broker会将没有收到回复的消息写回到队列中。当然设置multiple标志的方式会有重复消费的风险。transaction -- 事务方式可以规避重复消费的风险，代价是吞吐量不及QoS的方式。</p> <p>当消费端在接收消息或者处理消息的过程中发生异常情况时，rabbitmq提供两种方式将消息踢还给broker：<code>Basic.Reject</code> &amp; <code>Basic.Nak</code>。发送Basic.Reject给服务端时，若在请求中携带requeue标志，则broker会将消息重新入队，否则broker只是简单的将消息丢弃。Basic.Nak的行为与Basic.Reject类似，不同的是其类似Basic.Ack可以在一次回复中携带多个拒绝信息，它也不是AMQP原生支持的命令。除了这两条命令，rabbitmq还提供叫做死信exchange(DLX)的扩展，DLX同队列进行绑定，一个队列中被拒绝且没有重新入队的消息或者过期的消息会被交给DLX。</p></div></section> <footer class="page-edit"><!----> <!----></footer> <!----> <div class="comments-wrapper"><!----></div> <ul class="side-bar sub-sidebar-wrapper" style="width:0;" data-v-cb1513f6></ul></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/assets/js/app.9389cf45.js" defer></script><script src="/assets/js/3.79ddd9d5.js" defer></script><script src="/assets/js/1.e5d25758.js" defer></script><script src="/assets/js/13.7c0fffb2.js" defer></script>
+  </body>
+</html>
